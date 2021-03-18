@@ -47,7 +47,19 @@ const main = async () => {
         setValueDeep(acc, `${numeCentruPath}§dozeAdministrate§${curr.dataVaccinare}`, parseInt(curr.dozeAdministrate));
         return acc;
     }, {});
+    const medianCalculator = array => {
+        const sum = array.reduce((acc, curr) => {
+            return acc + curr
+        }, 0);
+        return  sum/array.length;
+    }
     debugger
-}
 
+    const getAvgVaccinationRate = (judet, localitate, numeCentru) => {
+        const centru = judeteAcc[judet][localitate][numeCentru]
+        const dates = Object.values(centru.dozeAdministrate)
+        return medianCalculator(dates)
+    }
+    console.log(getAvgVaccinationRate('Braila', 'Braila', 'Centru_S_Sala de sport a Scolii Gimnaziale nr. 23 Mihai Eminescu'))
+}
 main();
